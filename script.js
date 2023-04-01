@@ -21,7 +21,6 @@ do {
     switch (opcion) {
         case 1:
         let listaProductosMostrar2 ="Seleccione el numero producto deseado\n"+ listaProductosMostrar(productos)
-       /* productos.map ( producto => producto.id+". "+producto.nombre+"      Precio -> "+producto.precio).join("\n") */
         +"\n7. Para filtar productos"+"\n8. Para ir atras"+"\n0. Para salir" 
         let opcion1=Number(prompt(listaProductosMostrar2)) 
         let productoSeleccionado = productos.find ( producto => producto.id === opcion1 )
