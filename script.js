@@ -20,16 +20,16 @@ do {
 
     switch (opcion) {
         case 1:
-        let listaProductosMostrar ="Seleccione el numero producto deseado\n"+
-        productos.map ( producto => producto.id+". "+producto.nombre+"      Precio -> "+producto.precio).join("\n")
-        +"\n7. Para filtar productos"+"\n8. Para ir atras"+"\n0. Para salir"
-        let opcion1=Number(prompt(listaProductosMostrar)) 
+        let listaProductosMostrar2 ="Seleccione el numero producto deseado\n"+ listaProductosMostrar(productos)
+       /* productos.map ( producto => producto.id+". "+producto.nombre+"      Precio -> "+producto.precio).join("\n") */
+        +"\n7. Para filtar productos"+"\n8. Para ir atras"+"\n0. Para salir" 
+        let opcion1=Number(prompt(listaProductosMostrar2)) 
         let productoSeleccionado = productos.find ( producto => producto.id === opcion1 )
         if(productoSeleccionado){
             carrito.push(productoSeleccionado)
         }else if(opcion1 != 8 && opcion1 !=7 && opcion1 != 0){
             alert("Numero ingresado incorrecto")
-            opcion1=Number(prompt(listaProductosMostrar))
+            opcion1=Number(prompt(listaProductosMostrar2))
         }
         if(opcion1==0){
             opcion = opcion1
@@ -41,9 +41,8 @@ do {
                 alert("No existen nombres de productos con esa categoria")
                 opcion1=Number(prompt(listaProductosMostrar))
             }else{
-                listaProductosMostrar="Seleccione el numero producto deseado\n"+categoriaFiltrada.map
-                ( producto => producto.id+". "+producto.nombre+"        Precio -> "+producto.precio).join("\n")
-                let opcion2=Number(prompt(listaProductosMostrar))
+                listaProductosMostrar2="Seleccione el numero producto deseado\n"+ listaProductosMostrar(categoriaFiltrada)
+                let opcion2=Number(prompt(listaProductosMostrar2))
                 let productoSeleccionado1 = categoriaFiltrada.find ( producto => producto.id === opcion2 )
                 while(!productoSeleccionado1){
                     alert("Numero ingresado incorrecto")
@@ -53,10 +52,10 @@ do {
                 while(productoSeleccionado1){
                     carrito.push(productoSeleccionado1)
                     alert("Producto agregado con exito")
-                    opcion2=Number(prompt(listaProductosMostrar+"\n0. Para ir atras"))
+                    opcion2=Number(prompt(listaProductosMostrar2+"\n0. Para ir atras"))
                     productoSeleccionado1 = categoriaFiltrada.find ( producto => producto.id === opcion2 )
                 }
-
+                
             }
         }else if(opcion1 == 8){
             opcion = Number(prompt("             "+
@@ -66,14 +65,14 @@ do {
             "0. Para Salir"))
         }
         break
-    
+        
         case 2:
-        let precioTotal =0
-        for(const pro of carrito){
-            precioTotal = precioTotal + pro.precio
-        }
-        let verProductosCarrito = "Los productos seleccionados fueron\n"+ carrito.map( producto =>
-        producto.nombre+"-> "+producto.precio).join("\n")+"\nEl total a pagar es: "+precioTotal
+            let precioTotal =0
+            for(const pro of carrito){
+                precioTotal = precioTotal + pro.precio
+            }
+            let verProductosCarrito = "Los productos seleccionados fueron\n"+ listaProductosMostrar(carrito)+
+            "\nEl total a pagar es: "+precioTotal
         alert(verProductosCarrito)
         opcion = 0
         break
@@ -81,15 +80,21 @@ do {
         case 0:     
         opcion = 0
         break
-
+        
         default:
-        alert("No es una opcion correcta")
-        opcion = Number(prompt("             "+
-        "Bienvenidos a Arigato Restaurant de Comida China\n"+
-        "1. Ver Productos\n"+
-        "2. Ver Productos Selecionados\n"+
-        "0. Para Salir"))
-        break
-    }
-
+            alert("No es una opcion correcta")
+            opcion = Number(prompt("             "+
+            "Bienvenidos a Arigato Restaurant de Comida China\n"+
+            "1. Ver Productos\n"+
+            "2. Ver Productos Selecionados\n"+
+            "0. Para Salir"))
+            break
+        }
+        
 } while (opcion != 0);
+
+
+function listaProductosMostrar(productos){
+    return productos.map ( producto => {
+       return producto.id+". "+producto.nombre+"      Precio -> "+producto.precio}).join("\n")
+}
