@@ -38,14 +38,14 @@ do {
             let categoriaFiltrada = productos.filter( producto => producto.categoria === categoria )
             if(categoriaFiltrada.length === 0){
                 alert("No existen nombres de productos con esa categoria")
-                opcion1=Number(prompt(listaProductosMostrar))
+                opcion1=Number(prompt(listaProductosMostrar2))
             }else{
                 listaProductosMostrar2="Seleccione el numero producto deseado\n"+ listaProductosMostrar(categoriaFiltrada)
                 let opcion2=Number(prompt(listaProductosMostrar2))
                 let productoSeleccionado1 = categoriaFiltrada.find ( producto => producto.id === opcion2 )
                 while(!productoSeleccionado1){
                     alert("Numero ingresado incorrecto")
-                    opcion2=Number(prompt(listaProductosMostrar+"\n0. Para ir atras"))
+                    opcion2=Number(prompt(listaProductosMostrar2+"\n0. Para ir atras"))
                     productoSeleccionado1 = categoriaFiltrada.find ( producto => producto.id === opcion2 )
                 }
                 while(productoSeleccionado1){
